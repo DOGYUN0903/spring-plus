@@ -19,12 +19,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 public class TodoService {
 
     private final TodoRepository todoRepository;
     private final WeatherClient weatherClient;
 
+
+    // 쓰기작업 (저장, 수정, 삭제)에는 @Transactional을 붙히고, 읽기작업에는 Transactional(readonly = true)를 붙힙니다.
+    @Transactional
     public TodoSaveResponse saveTodo(AuthUser authUser, TodoSaveRequest todoSaveRequest) {
         User user = User.fromAuthUser(authUser);
 
@@ -47,6 +49,7 @@ public class TodoService {
         );
     }
 
+    @Transactional(readOnly = true)
     public Page<TodoResponse> getTodos(int page, int size) {
         Pageable pageable = PageRequest.of(page - 1, size);
 
@@ -63,6 +66,7 @@ public class TodoService {
         ));
     }
 
+    @Transactional(readOnly = true)
     public TodoResponse getTodo(long todoId) {
         Todo todo = todoRepository.findByIdWithUser(todoId)
                 .orElseThrow(() -> new InvalidRequestException("Todo not found"));
