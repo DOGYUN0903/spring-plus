@@ -18,8 +18,8 @@ public class AdminAccessLoggingAspect {
 
     private final HttpServletRequest request;
 
-    @After("execution(* org.example.expert.domain.user.controller.UserController.getUser(..))")
-    public void logAfterChangeUserRole(JoinPoint joinPoint) {
+    @After("execution(* org.example.expert.domain.user.controller.UserAdminController.changeUserRole(..))")
+    public void logBeforeChangeUserRole(JoinPoint joinPoint) {
         String userId = String.valueOf(request.getAttribute("userId"));
         String requestUrl = request.getRequestURI();
         LocalDateTime requestTime = LocalDateTime.now();
