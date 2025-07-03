@@ -34,6 +34,9 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
+    // s3
+    implementation 'io.awspring.cloud:spring-cloud-starter-aws:2.4.4'
+
     // queryDsl
     implementation 'com.google.code.findbugs:jsr305:3.0.2'
     //Querydsl 추가

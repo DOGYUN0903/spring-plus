@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DBNAME}?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DBNAME}?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul
     username: ${MYSQL_USERNAME}
     password: ${MYSQL_PASSWORD}
   jpa:
@@ -20,3 +20,18 @@ spring:
 jwt:
   secret:
     key: ${JWT_SECRET_KEY}
+
+cloud:
+  aws:
+    credentials:
+      access-key: ${AWS_ACCESS_KEY}
+      secret-key: ${AWS_SECRET_KEY}
+    region:
+      static: ${AWS_REGION}
+    s3:
+      bucket: ${S3_BUCKET_NAME}
+    stack:
+      auto: false
+
+custom:
+  default-profile-image-url: ${DEFAULT_PROFILE_IMAGE_URL}

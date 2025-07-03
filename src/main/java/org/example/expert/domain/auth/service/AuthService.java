@@ -12,6 +12,7 @@ import org.example.expert.domain.common.exception.InvalidRequestException;
 import org.example.expert.domain.user.entity.User;
 import org.example.expert.domain.user.enums.UserRole;
 import org.example.expert.domain.user.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +21,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public class AuthService {
 
+    @Value("${custom.default-profile-image-url}")
+    private String defaultProfileImageUrl;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
@@ -39,6 +42,7 @@ public class AuthService {
                 signupRequest.getEmail(),
                 signupRequest.getNickname(),
                 encodedPassword,
+                defaultProfileImageUrl,
                 userRole
         );
         User savedUser = userRepository.save(newUser);
