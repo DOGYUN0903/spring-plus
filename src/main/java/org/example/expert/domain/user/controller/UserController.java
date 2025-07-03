@@ -27,7 +27,7 @@ public class UserController {
         userService.changePassword(authUser.getId(), userChangePasswordRequest);
     }
 
-    @PutMapping("/users/profile")
+    @PostMapping("/users/profile")
     public ResponseEntity<UserProfileChangeResponse> updateProfileImage(
             @AuthenticationPrincipal AuthUser authUser,
             @RequestParam("file")MultipartFile file){
