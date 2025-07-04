@@ -32,8 +32,7 @@ public class S3Service {
         metadata.setContentType(file.getContentType());
 
         try (InputStream inputStream = file.getInputStream()) {
-            amazonS3.putObject(new PutObjectRequest(bucket, fileName, inputStream, metadata)
-                    .withCannedAcl(CannedAccessControlList.PublicReadWrite)); // 공개 URL
+            amazonS3.putObject(new PutObjectRequest(bucket, fileName, inputStream, metadata));
         } catch (IOException e) {
             throw new ServerException("S3 업로드 실패: " + e.getMessage());
         }
