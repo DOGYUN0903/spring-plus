@@ -30,7 +30,7 @@ public class UserController {
     @PostMapping("/users/profile")
     public ResponseEntity<UserProfileChangeResponse> updateProfileImage(
             @AuthenticationPrincipal AuthUser authUser,
-            @RequestParam(value = "file", required = false)MultipartFile file){
+            @RequestParam(value = "file") MultipartFile file){
         return ResponseEntity.ok(userService.updateProfileImage(authUser, file));
     }
 
