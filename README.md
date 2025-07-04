@@ -109,7 +109,7 @@ DEFAULT_PROFILE_IMAGE_URL=https://your-bucket-name.s3.ap-northeast-2.amazonaws.c
             "Sid": "AllowAppUploads",
             "Effect": "Allow",
             "Principal": {
-                "AWS": "arn:aws:iam::509399619674:user/kimdogyun"
+                "AWS": "{IAM 유저의 ARN이 들어가면 됩니다}"
             },
             "Action": [
                 "s3:PutObject",
